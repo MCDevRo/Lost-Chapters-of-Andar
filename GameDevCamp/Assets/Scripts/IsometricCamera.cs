@@ -1,11 +1,11 @@
 using UnityEngine;
+using Cinemachine;
 
 public class IsometricCamera : MonoBehaviour
 {
-    // The target to follow
-    public Transform target;
+    public Transform player;  // Reference to the player's transform
+    private CinemachineVirtualCamera virtualCamera;  // Reference to the virtual camera component
 
-    // The distance from the target
     [SerializeField]
     [Tooltip("Set the distance between player and camera")]
     private float distance = 10.0f;
@@ -20,11 +20,19 @@ public class IsometricCamera : MonoBehaviour
     [Tooltip("Set the angle of the camera")]
     private float rotation = 45.0f;
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void Start()
     {
-        // Calculate the position of the camera
-        Vector3 position = target.position;
+        virtualCamera = GetComponent<CinemachineVirtualCamera>();  // Get the virtual camera component
+    }
+
+    private void LateUpdate()
+    {
+        virtualCamera.Follow = player;  // Set the target of the virtual camera to be the player's transform
+        virtualCamera.LookAt = player;  // Set the LookAt target of the virtual camera to be the player's transform
+
+        // Set the camera's rotation and position to give an isometric view
+        //Calculate the position of the camera
+        Vector3 position = player.position;
         position -= Vector3.forward * distance;
         position.y = height;
 
@@ -32,9 +40,9 @@ public class IsometricCamera : MonoBehaviour
         transform.position = position;
 
         // Look at the target
-        transform.LookAt(target);
+        transform.LookAt(player);
 
         // Rotate the camera by the specified angle
-        transform.RotateAround(target.position, Vector3.up, rotation);
+        transform.RotateAround(player.position, Vector3.up, rotation);
     }
 }
