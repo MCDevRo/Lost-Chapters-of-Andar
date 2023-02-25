@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e424239506c757f49bde62af3d7b1a77
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - walkAnimation: {fileID: 7400000, guid: 23ef8092bf529f249826c48c792c3d0a, type: 2}
+  - runAnimation: {fileID: 7400000, guid: 8256de9dfd21b9d4db62a42fb75406cc, type: 2}
+  - attackAnimation: {fileID: 7400000, guid: eb77c5164e7d5b647b0cc3d358df341c, type: 2}
+  - idleAnimation: {fileID: 7400000, guid: 9708c6290d22b99498d039849d72f599, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

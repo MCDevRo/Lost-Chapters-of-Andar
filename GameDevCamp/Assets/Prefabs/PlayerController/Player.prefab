@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &772503639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 772503640}
+  m_Layer: 0
+  m_Name: FIreBallSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &772503640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772503639}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 38.6, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 428908612170783793}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &430094425150032973
 GameObject:
   m_ObjectHideFlags: 0
@@ -36261,6 +36291,7 @@ Transform:
   - {fileID: 428673933211495941}
   - {fileID: 428606335938940987}
   - {fileID: 428406190852222623}
+  - {fileID: 772503640}
   m_Father: {fileID: 428644632062166777}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66868,9 +66899,11 @@ GameObject:
   - component: {fileID: 1580493044602148962}
   - component: {fileID: 1580493044602148963}
   - component: {fileID: 1580493044602148991}
+  - component: {fileID: 1292166895}
+  - component: {fileID: 1292166896}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66882,7 +66915,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432199280495005585}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -76.4, y: 5.07, z: 5.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -66954,7 +66987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
-  moveSpeed: 3
+  moveSpeed: 6
   rotationSpeed: 500
 --- !u!114 &1580493044602148991
 MonoBehaviour:
@@ -66970,6 +67003,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToMove: {fileID: 0}
   moveDirection: {x: 0, y: 3.75, z: 0}
+--- !u!114 &1292166895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432199280495005585}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3359c82b7ea1f4148a7ec7f502ffdae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
+  magicSlashPrefab: {fileID: 66664266262649118, guid: a7a2dd4341857e94fac0d96330759f06, type: 3}
+  fireballPrefab: {fileID: 7015924215503509015, guid: 7225d9ca861379449a47d9189fea3812, type: 3}
+  fireballSpeed: 20
+  fireballDuration: 5
+  fireballSpawnPoint: {fileID: 772503640}
+  animator: {fileID: 337589863809253377}
+--- !u!114 &1292166896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432199280495005585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48dd7532c7c6fe48a2eaa7361f1fef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 100
+  magicSlashPrefab: {fileID: 66664266262649118, guid: a7a2dd4341857e94fac0d96330759f06, type: 3}
+  fireballPrefab: {fileID: 7015924215503509015, guid: 7225d9ca861379449a47d9189fea3812, type: 3}
+  fireballSpeed: 20
+  fireballDuration: 5
+  fireballSpawnPoint: {fileID: 772503640}
+  animator: {fileID: 337589863809253377}
+  fireballPushForce: 20
+  fireballRange: 50
 --- !u!1 &432200563816612627
 GameObject:
   m_ObjectHideFlags: 0

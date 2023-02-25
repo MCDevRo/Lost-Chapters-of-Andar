@@ -7,11 +7,11 @@ public class TopDownPlayerController : MonoBehaviour
 
     // The player's maximum health
     [SerializeField]
-    private int maxHealth = 100;
+    private float maxHealth = 100;
 
     // The player's current health
     [SerializeField]
-    public int health;
+    public float health;
 
     // The speed at which the player moves
     [SerializeField]
@@ -79,7 +79,7 @@ public class TopDownPlayerController : MonoBehaviour
     }
 
     // A function to add health to the player
-    public void AddHealth(int amount)
+    public void AddHealth(float amount)
     {
         // Increment the player's health by the specified amount
         health += amount;
@@ -90,18 +90,22 @@ public class TopDownPlayerController : MonoBehaviour
     }
 
     // A function to deal damage to the player
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         // Decrement the player's health by the specified amount
         health -= amount;
+        Debug.Log(health);
+        if(health <= 0)
+        {
+            Die();
+        }
 
         // Make sure the player's health does not go below 0
         health = Mathf.Max(health, 0);
     }
 
-    // A function to check if the player is dead
-    public bool IsDead()
+    public void Die()
     {
-        return health <= 0;
+        Debug.Log("Player is Dead!");
     }
 }
