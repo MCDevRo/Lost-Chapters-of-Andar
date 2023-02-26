@@ -1,113 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAi : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private EnemyAiData aiData;
-    [SerializeField] private Transform[] waypoints;
-    [SerializeField] private float idleDuration;
+    [SerializeField] private Enemy enemyData;
+    [SerializeField] private string playerTag = "Player";
+    [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private float attackDelay = 0.5f;
 
-    private NavMeshAgent agent;
+    private NavMeshAgent navMeshAgent;
     private Animator animator;
-    private Transform player;
-    private bool isRoaming;
-    private bool isChasing;
+    private Transform playerTransform;
     private bool isAttacking;
-    private float lastAttackTime;
-    private int currentWaypointIndex;
-    private float lastIdleTime;
+    private float attackCooldownTimer;
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        isRoaming = true;
-        isChasing = false;
-        isAttacking = false;
-        lastAttackTime = -aiData.attackDelay;
-        currentWaypointIndex = 0;
-        lastIdleTime = -idleDuration;
+        playerTransform = GameObject.FindGameObjectWithTag(playerTag).transform;
     }
 
     private void Update()
     {
-        if (isRoaming)
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+        if (distanceToPlayer <= enemyData.AttackRange)
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (!isAttacking && attackCooldownTimer <= 0)
             {
-                if (Time.time - lastIdleTime > idleDuration)
-                {
-                    animator.SetBool("IsIdle", true);
-                    animator.SetBool("IsWalking", false);
-                    lastIdleTime = Time.time;
-                }
-                else
-                {
-                    agent.SetDestination(waypoints[currentWaypointIndex].position);
-                    animator.SetBool("IsWalking", true);
-                    animator.SetBool("IsIdle", false);
-                    currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
-                }
+                StartCoroutine(Attack());
             }
-            CheckPlayerInRange();
         }
-        else if (isChasing)
+        else if (distanceToPlayer <= enemyData.ChaseRange)
         {
-            agent.SetDestination(player.position);
-            animator.SetBool("IsRunning", true);
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsIdle", false);
-            CheckPlayerInRange();
-        }
-        else if (isAttacking)
-        {
-            if (Time.time - lastAttackTime > aiData.attackDelay)
-            {
-                animator.SetBool("IsAttacking", true);
-                animator.SetBool("IsRunning", false);
-                animator.SetBool("IsWalking", false);
-                animator.SetBool("IsIdle", false);
-                TopDownPlayerController playerController = player.GetComponent<TopDownPlayerController>();
-                if (playerController != null)
-                {
-                    playerController.TakeDamage(aiData.damage);
-                }
-                lastAttackTime = Time.time;
-                Debug.Log("Player took " + aiData.damage);
-            }
-            CheckPlayerInRange();
-        }
-    }
-    private void CheckPlayerInRange()
-    {
-        if (Vector3.Distance(transform.position, player.position) <= aiData.attackRange)
-        {
-            isRoaming = false;
-            isChasing = false;
-            isAttacking = true;
-            agent.isStopped = true;
-        }
-        else if (Vector3.Distance(transform.position, player.position) <= aiData.chaseRange)
-        {
-            isRoaming = false;
-            isChasing = true;
-            isAttacking = false;
-            agent.isStopped = false;
-            animator.SetBool("IsRunning", true);
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsIdle", false);
+            navMeshAgent.SetDestination(playerTransform.position);
+            animator.SetBool("isRunning", true);
         }
         else
         {
-            isRoaming = true;
-            isChasing = false;
-            isAttacking = false;
-            agent.isStopped = false;
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsRunning", false);
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsAttacking", false);
+            animator.SetBool("isRunning", false);
         }
+
+        attackCooldownTimer -= Time.deltaTime;
+    }
+
+    private IEnumerator Attack()
+    {
+        isAttacking = true;
+        animator.SetTrigger("attack");
+
+        yield return new WaitForSeconds(attackDelay);
+
+        if (Vector3.Distance(transform.position, playerTransform.position) <= enemyData.AttackRange)
+        {
+            playerTransform.GetComponent<TopDownPlayerController>().TakeDamage(enemyData.Damage);
+            attackCooldownTimer = enemyData.DelayBetweenAttacks;
+        }
+
+        isAttacking = false;
     }
 }

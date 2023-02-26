@@ -28,6 +28,8 @@ public class TopDownPlayerController : MonoBehaviour
     // The animator component
     private Animator animator;
 
+    public static object Instance { get; internal set; }
+
     private void Start()
     {
         // Get the animator component

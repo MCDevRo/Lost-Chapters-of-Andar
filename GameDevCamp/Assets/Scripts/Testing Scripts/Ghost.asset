@@ -9,15 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e424239506c757f49bde62af3d7b1a77, type: 3}
+  m_Script: {fileID: 11500000, guid: 973c05b56f1ca85428292242ea35e183, type: 3}
   m_Name: Ghost
   m_EditorClassIdentifier: 
-  roamRadius: 10
-  chaseRange: 20
-  attackRange: 2
-  damage: 10
-  attackDelay: 1
-  walkAnimation: {fileID: 7400000, guid: 23ef8092bf529f249826c48c792c3d0a, type: 2}
-  runAnimation: {fileID: 7400000, guid: 8256de9dfd21b9d4db62a42fb75406cc, type: 2}
-  attackAnimation: {fileID: 7400000, guid: eb77c5164e7d5b647b0cc3d358df341c, type: 2}
-  idleAnimation: {fileID: 7400000, guid: 9708c6290d22b99498d039849d72f599, type: 2}
+  attackRange: 1.5
+  damage: 15
+  chaseRange: 8
+  delayBetweenAttacks: 1
+  isRanged: 0

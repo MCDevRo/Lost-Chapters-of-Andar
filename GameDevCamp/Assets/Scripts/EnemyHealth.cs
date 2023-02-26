@@ -26,13 +26,13 @@ public class EnemyHealth : MonoBehaviour
         else if (impactVFXPrefab != null)
         {
             // Instantiate the impact VFX prefab and play it at the enemy's position
-            Instantiate(impactVFXPrefab, new Vector3(transform.position.x,1.6f,transform.position.z), transform.rotation);
+            Instantiate(impactVFXPrefab, transform.position, transform.rotation);
         }
     }
 
     void Die()
     {
-        Instantiate(impactVFXPrefab, new Vector3(transform.position.x, 1.6f, transform.position.z), transform.rotation);
+        Instantiate(impactVFXPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }
