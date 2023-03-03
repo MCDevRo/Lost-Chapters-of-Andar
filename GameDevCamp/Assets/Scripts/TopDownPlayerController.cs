@@ -35,7 +35,7 @@ public class TopDownPlayerController : MonoBehaviour
         // Get the animator component
         animator = GetComponent<Animator>();
         health = maxHealth;
-        
+
     }
 
     // Update is called once per frame
@@ -97,7 +97,7 @@ public class TopDownPlayerController : MonoBehaviour
         // Decrement the player's health by the specified amount
         health -= amount;
         Debug.Log(health);
-        if(health <= 0)
+        if (health <= 0)
         {
             Die();
         }

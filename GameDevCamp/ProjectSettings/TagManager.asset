@@ -8,6 +8,8 @@ TagManager:
   - Bridge
   - TriggerPlatformB
   - BridgeSpawn
+  - Enemies
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX
