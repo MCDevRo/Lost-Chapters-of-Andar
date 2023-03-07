@@ -10,6 +10,7 @@ TagManager:
   - BridgeSpawn
   - Enemies
   - PlayerProjectile
+  - spawn
   layers:
   - Default
   - TransparentFX

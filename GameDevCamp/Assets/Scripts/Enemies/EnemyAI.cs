@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private Enemy enemyData;
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private float attackCooldown = 0.5f;
+    //[SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private float attackDelay = 0.5f;
 
     private NavMeshAgent navMeshAgent;

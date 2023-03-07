@@ -6,6 +6,8 @@ public class EnemyHealth : MonoBehaviour
 {
     public float maxHealth = 100f;
 
+    public float vfxOffset = 1f;
+
     private float currentHealth;
 
     public GameObject impactVFXPrefab;
@@ -26,13 +28,13 @@ public class EnemyHealth : MonoBehaviour
         else if (impactVFXPrefab != null)
         {
             // Instantiate the impact VFX prefab and play it at the enemy's position
-            Instantiate(impactVFXPrefab, new Vector3(transform.position.x,1.6f,transform.position.z), transform.rotation);
+            Instantiate(impactVFXPrefab, new Vector3(transform.position.x,transform.position.y + vfxOffset,transform.position.z), transform.rotation);
         }
     }
 
     void Die()
     {
-        Instantiate(impactVFXPrefab, new Vector3(transform.position.x, 1.6f, transform.position.z), transform.rotation);
+        Instantiate(impactVFXPrefab, new Vector3(transform.position.x, transform.position.y + vfxOffset, transform.position.z), transform.rotation);
         Destroy(gameObject);
     }
 }
