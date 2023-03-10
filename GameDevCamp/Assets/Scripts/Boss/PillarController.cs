@@ -8,6 +8,12 @@ public class PillarController : MonoBehaviour
 
     public int numShots; // number of shots taken by the pillar
     private bool charged; // flag indicating whether the pillar is charged or not
+
+    private DiamondGlow[] diamondGlows;
+    void Awake()
+    {
+        diamondGlows = GetComponentsInChildren<DiamondGlow>();
+    }
     public void TakeShot()
     {
         // increment the number of shots taken by the pillar
@@ -23,6 +29,12 @@ public class PillarController : MonoBehaviour
             {
                 Instantiate(chargedEffect, transform.position, transform.rotation);
             }
+            // enable the diamond glow
+            foreach (DiamondGlow diamondGlow in diamondGlows)
+            {
+                diamondGlow.EnableGlow();
+            }
+
 
             // notify the boss that the pillar has been charged
             BossHealth bossHealth = GameObject.FindObjectOfType<BossHealth>();
@@ -30,6 +42,14 @@ public class PillarController : MonoBehaviour
             {
                 bossHealth.PillarCharged();
             }
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("PillarTrigger OnTriggerEnter");
+        if (other.CompareTag("PlayerProjectile"))
+        {
+            TakeShot();
         }
     }
 }
