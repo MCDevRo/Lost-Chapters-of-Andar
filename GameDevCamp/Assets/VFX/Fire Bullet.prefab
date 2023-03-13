@@ -5424,6 +5424,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 50
   fireballPushForce: 10
+  braziers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fireVFXPrefab: {fileID: 4364512796957155357, guid: aca5d518418a21c4f867b85cdbc03771, type: 3}
+  finalObjectPrefab: {fileID: 0}
 --- !u!1 &7015924215640359798
 GameObject:
   m_ObjectHideFlags: 0
