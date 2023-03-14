@@ -6,9 +6,9 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private List<Transform> spawnPoints;
     [SerializeField] private List<GameObject> enemyPrefabs;
-    [SerializeField] private List<int> enemyCounts;
+    [SerializeField] public List<int> enemyCounts;
 
-    private List<GameObject> spawnedEnemies = new List<GameObject>();
+    public List<GameObject> spawnedEnemies = new List<GameObject>();
 
     private void Start()
     {
@@ -82,9 +82,13 @@ public class SpawnManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        TaskManager taskManager = GetComponent<TaskManager>();
+
         if (other.gameObject.tag == "Player")
         {
+            taskManager.enabled = true;
             Debug.Log("Enemies are starting to spawn!");
+            //taskManager.enemyCountText.gameObject.SetActive(true);
             StartCoroutine(SpawnEnemies());
             gameObject.GetComponent<Collider>().enabled = false;
         }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 66664266262649119}
   - component: {fileID: 66664266262649116}
   - component: {fileID: 1639132371}
-  - component: {fileID: 1391232941}
   m_Layer: 0
   m_Name: Slash Magic
   m_TagString: PlayerProjectile
@@ -56,23 +55,10 @@ SphereCollider:
   m_GameObject: {fileID: 66664266262649118}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 1.7}
---- !u!114 &1391232941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66664266262649118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5402a4e3bfef2dc4d8db8916af584d89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 25
 --- !u!1 &66664267356566322
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +72,7 @@ GameObject:
   - component: {fileID: 66664267356566326}
   - component: {fileID: 66664267356566320}
   - component: {fileID: 1399779273}
+  - component: {fileID: 7590039704736731194}
   m_Layer: 0
   m_Name: VenomSlash
   m_TagString: Untagged
@@ -184,12 +171,25 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66664267356566322}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: a637ff494703e414c8c4ab36fbf90240, type: 2}
+--- !u!114 &7590039704736731194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66664267356566322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5402a4e3bfef2dc4d8db8916af584d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
 --- !u!1 &1270050103386290048
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,12 +12,22 @@ public class FireBall : MonoBehaviour
         // check if the collided object has an EnemyHealth component
         EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
         Rigidbody enemyRigidbody = other.GetComponent<Rigidbody>();
+      
 
         BossHealth bossHealth = other.GetComponent<BossHealth>();
 
         if (enemyRigidbody != null)
         {
             enemyRigidbody.AddForce(transform.forward * fireballPushForce, ForceMode.Impulse);
+        }
+        if (other.gameObject.CompareTag("Brazier"))
+        {
+            Braziers brazier = other.gameObject.GetComponent<Braziers>();
+            if (brazier != null)
+            {
+                brazier.LightBrazier();
+                BrazierManager.Instance.IncrementBraziersLit();
+            }
         }
         if (enemyHealth != null)
         {
