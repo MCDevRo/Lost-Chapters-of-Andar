@@ -1,96 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private List<Transform> spawnPoints;
-    [SerializeField] private List<GameObject> enemyPrefabs;
-    [SerializeField] public List<int> enemyCounts;
 
-    public List<GameObject> spawnedEnemies = new List<GameObject>();
+    public GameObject[] enemyPrefabs;
+    public int numberOfEnemiesToSpawn;
+    public Transform[] spawnPoints;
 
-    private void Start()
+    [SerializeField] private GameObject pillar;
+    [SerializeField] private float lowerSpeed = 0.5f;
+    [SerializeField] private float lowerYPosition = 5f;
+
+    public UIManager uiManager; // Reference to the UIManager script
+
+    void Start()
     {
-        //StartCoroutine(SpawnEnemies());
+        
+        LowerPillar();
     }
-    public IEnumerator SpawnEnemies()
+
+    IEnumerator SpawnEnemies()
     {
-        // Loop through each enemy type and spawn the desired number of enemies
-        for (int i = 0; i < enemyPrefabs.Count; i++)
+        for (int i = 0; i < numberOfEnemiesToSpawn; i++)
         {
-            for (int j = 0; j < enemyCounts[i]; j++)
-            {
-                // Randomly select a spawn point
-                Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
-
-                // Instantiate the enemy prefab at the selected spawn point
-                GameObject spawnedEnemy = Instantiate(enemyPrefabs[i], spawnPoint.position, spawnPoint.rotation);
-
-                // Add the spawned enemy to the list of spawned enemies
-                spawnedEnemies.Add(spawnedEnemy);
-
-                // Wait for 3 seconds before spawning the next enemy
-                yield return new WaitForSeconds(3f);
-            }
+            int enemyIndex = Random.Range(0, enemyPrefabs.Length);
+            int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+            GameObject enemyObject = Instantiate(enemyPrefabs[enemyIndex], spawnPoints[spawnPointIndex].position, Quaternion.identity);
+            // Pass a reference to the UIManager script to each spawned enemy
+            enemyObject.GetComponent<SecondAreaEnemyHealth>().uiManager = uiManager;
+            yield return new WaitForSeconds(1.0f); // wait 1 second before spawning the next enemy
         }
     }
-
-    public void ResetSpawnedEnemies()
+    public IEnumerator LowerPillar()
     {
-        // Destroy all spawned enemies and clear the list
-        foreach (GameObject spawnedEnemy in spawnedEnemies)
+        // Lower the pillar gradually
+        while (pillar.transform.position.y > lowerYPosition)
         {
-            Destroy(spawnedEnemy);
+            pillar.transform.position -= new Vector3(0f, lowerSpeed * Time.deltaTime, 0f);
+            yield return null;
         }
-        spawnedEnemies.Clear();
 
-        // Spawn new enemies with the current settings
-        StartCoroutine(SpawnEnemies());
+        // Disable this script so that the task is only completed once
+        enabled = false;
     }
-
-    // The following methods can be used to modify the spawn settings at runtime
-
-    public void AddSpawnPoint(Transform spawnPoint)
-    {
-        spawnPoints.Add(spawnPoint);
-    }
-
-    public void RemoveSpawnPoint(Transform spawnPoint)
-    {
-        spawnPoints.Remove(spawnPoint);
-    }
-
-    public void AddEnemyPrefab(GameObject enemyPrefab, int count)
-    {
-        enemyPrefabs.Add(enemyPrefab);
-        enemyCounts.Add(count);
-    }
-
-    public void RemoveEnemyPrefab(GameObject enemyPrefab)
-    {
-        int index = enemyPrefabs.IndexOf(enemyPrefab);
-        enemyPrefabs.RemoveAt(index);
-        enemyCounts.RemoveAt(index);
-    }
-
-    public void SetEnemyCount(GameObject enemyPrefab, int count)
-    {
-        int index = enemyPrefabs.IndexOf(enemyPrefab);
-        enemyCounts[index] = count;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        TaskManager taskManager = GetComponent<TaskManager>();
-
-        if (other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player")
         {
-            taskManager.enabled = true;
-            Debug.Log("Enemies are starting to spawn!");
-            //taskManager.enemyCountText.gameObject.SetActive(true);
+            Debug.Log("Enemies started to spawn!");
             StartCoroutine(SpawnEnemies());
-            gameObject.GetComponent<Collider>().enabled = false;
+
+
         }
     }
 }

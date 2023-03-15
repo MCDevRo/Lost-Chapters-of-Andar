@@ -2454,7 +2454,6 @@ GameObject:
   - component: {fileID: 1580680443534515353}
   - component: {fileID: 8481351691825233389}
   - component: {fileID: 5418842323638719532}
-  - component: {fileID: 8722661808420638122}
   - component: {fileID: 7881354429967973484}
   - component: {fileID: 6546082388189050835}
   - component: {fileID: -7761376937542222787}
@@ -2546,21 +2545,6 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 105f41d2a5eff7643be3806d51ff8c67, type: 2}
   playerTag: Player
   attackDelay: 0.5
---- !u!114 &8722661808420638122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580680443544157871}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f5dff6b5139d6f4fbc085678ce84626, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  vfxOffset: 1
-  impactVFXPrefab: {fileID: 5167044282077615045, guid: 24b28000422b8f548a1fc451ab90e4cc, type: 3}
 --- !u!136 &7881354429967973484
 CapsuleCollider:
   m_ObjectHideFlags: 0

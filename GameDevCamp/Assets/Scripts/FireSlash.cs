@@ -12,6 +12,15 @@ public class FireSlash : MonoBehaviour
 
         BossHealth bossHealth = other.GetComponent<BossHealth>();
 
+        SecondAreaEnemyHealth gardenEnemyHealth = other.GetComponent<SecondAreaEnemyHealth>();
+
+        
+        if (gardenEnemyHealth != null)
+        {
+            gardenEnemyHealth.TakeDamage(damageAmount);
+            Destroy(gameObject);
+        }
+
         if (enemyHealth != null)
         {
             // apply damage to the enemy

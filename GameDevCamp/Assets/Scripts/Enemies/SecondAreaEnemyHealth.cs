@@ -12,12 +12,16 @@ public class SecondAreaEnemyHealth : MonoBehaviour
 
     public GameObject impactVFXPrefab;
 
-    TaskManager manager;
+    public SpawnManager spawnManager;
+
+    public UIManager uiManager; // Reference to the UIManager script
+
+
 
     void Start()
     {
-        manager = GetComponent<TaskManager>();
         currentHealth = maxHealth;
+        
     }
 
     public void TakeDamage(float damage)
@@ -38,15 +42,12 @@ public class SecondAreaEnemyHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Enemy died.");
-        if (manager != null)
-        {
-            // Call the IncrementEnemiesDefeated function on the TaskManager script
-            manager.IncrementEnemiesDefeated();
-        }
 
         Instantiate(impactVFXPrefab, new Vector3(transform.position.x, transform.position.y + vfxOffset, transform.position.z), transform.rotation);
         Destroy(gameObject);
-        
+
+        // Call the UIManager's IncrementEnemiesDefeated method to update the UI
+        uiManager.IncrementEnemiesDefeated();
+
     }
 }
