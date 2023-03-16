@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2971162384407134707}
   - component: {fileID: 1071653558128473401}
   m_Layer: 0
-  m_Name: Garden_stone_brazier_small
+  m_Name: Stone_brazier_small_orange_fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576184327550031084}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 174.369, y: 8.492731, z: 86.702}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -125,9 +125,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.99215686, g: 0.5568628, b: 0.19215687, a: 1}
-  m_Intensity: 1
-  m_Range: 2.7
+  m_Color: {r: 1, g: 0.6081668, b: 0.27987415, a: 1}
+  m_Intensity: 2
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
