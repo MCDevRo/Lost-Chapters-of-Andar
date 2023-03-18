@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
+    public Image controlsDisplay;
     public Text enemiesDefeatedText; // Reference to the UI Text component that displays the number of enemies defeated
     public SpawnManager spawnManager; // Reference to the SpawnManager script
 
@@ -11,9 +11,22 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        controlsDisplay.gameObject.SetActive(false);
         enemiesDefeatedText.gameObject.SetActive(false);
         spawnManager = GetComponent<SpawnManager>();
         UpdateEnemiesDefeatedText(); // Initialize the UI Text component with the current number of enemies defeated
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            controlsDisplay.gameObject.SetActive(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            controlsDisplay.gameObject.SetActive(false);
+        }
     }
 
     public void IncrementEnemiesDefeated()

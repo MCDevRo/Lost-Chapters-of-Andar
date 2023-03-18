@@ -13,10 +13,10 @@ public class DiamondGlow : MonoBehaviour
         hasEmissionMap = material.HasProperty("_EmissionMap");
 
         // Disable emission map at the start
-        if (hasEmissionMap)
+        /*if (hasEmissionMap)
         {
             material.DisableKeyword("_EMISSION");
-        }
+        }*/
     }
 
     public void EnableGlow()
