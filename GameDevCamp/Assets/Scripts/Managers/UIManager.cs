@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public Text optionsText;
     public Image controlsDisplay;
     public Text enemiesDefeatedText; // Reference to the UI Text component that displays the number of enemies defeated
     public SpawnManager spawnManager; // Reference to the SpawnManager script
 
     private int enemiesDefeated = 0; // Counter for the number of enemies defeated
+
+    public Slider healthSlider;
 
     void Start()
     {
@@ -15,18 +19,22 @@ public class UIManager : MonoBehaviour
         enemiesDefeatedText.gameObject.SetActive(false);
         spawnManager = GetComponent<SpawnManager>();
         UpdateEnemiesDefeatedText(); // Initialize the UI Text component with the current number of enemies defeated
+        
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            optionsText.gameObject.SetActive(false);
             controlsDisplay.gameObject.SetActive(true);
         }
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
             controlsDisplay.gameObject.SetActive(false);
+            optionsText.gameObject.SetActive(true);
         }
+        ReturnToMainMenu();
     }
 
     public void IncrementEnemiesDefeated()
@@ -54,6 +62,23 @@ public class UIManager : MonoBehaviour
             Debug.Log("Enemies started to spawn!");
             enemiesDefeatedText.gameObject.SetActive(true);
 
+        }
+    }
+    public void SetMaxHealth(float health)
+    {
+        healthSlider.maxValue = health;
+        healthSlider.value = health;
+    }
+    public void SetHealth(float health)
+    {
+        healthSlider.value = health;
+    }
+
+    private void ReturnToMainMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
