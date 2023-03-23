@@ -34,6 +34,8 @@ public class TopDownPlayerController : MonoBehaviour
     [SerializeField]
     private GameObject fireTrailPrefab;
     private bool isDodging = false;
+    private bool isDead = false;
+
 
     // Player mesh transform
     private Transform playerMesh;
@@ -47,6 +49,7 @@ public class TopDownPlayerController : MonoBehaviour
 
     //Ui Reference
     public UIManager healthBar;
+    public float deathAnimationDuration = 3f;
 
     private void Start()
     {
@@ -54,6 +57,8 @@ public class TopDownPlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         health = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+       
+
 
 
         // Assign the player mesh transform
@@ -64,6 +69,11 @@ public class TopDownPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (isDead)
+        {
+            return;
+        }
         // Get the joystick's horizontal and vertical axes
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -134,6 +144,7 @@ public class TopDownPlayerController : MonoBehaviour
         Debug.Log(health);
         if (health <= 0)
         {
+            isDead = true;
             Die();
         }
 
@@ -142,7 +153,12 @@ public class TopDownPlayerController : MonoBehaviour
     }
     public void Die()
     {
+        animator.SetTrigger("Die");
         Debug.Log("Player is Dead!");
+        this.enabled = false;
+
+        StartCoroutine(ShowGameOverScreenAfterDeathAnimation());
+
     }
 
     IEnumerator Dodge()
@@ -183,5 +199,13 @@ public class TopDownPlayerController : MonoBehaviour
 
         // Reset the dodging flag
         isDodging = false;
+    }
+    IEnumerator ShowGameOverScreenAfterDeathAnimation()
+    {
+        // Wait for the duration of the death animation
+        yield return new WaitForSeconds(deathAnimationDuration);
+
+        // Show the game over screen
+        healthBar.ShowGameOverScreen();
     }
 }

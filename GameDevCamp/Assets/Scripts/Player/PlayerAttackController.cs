@@ -14,8 +14,14 @@ public class PlayerAttackController : MonoBehaviour
     private bool isAttacking = false;
     private bool isFiring = false;
 
-    void Update()
+    private void Start()
     {
+        player = GetComponent<TopDownPlayerController>();
+    }
+    void Update()
+    { 
+        
+
         if (Input.GetMouseButtonDown(0) && !isAttacking && !isFiring)
         {
             // Perform fire slash attack
@@ -28,6 +34,10 @@ public class PlayerAttackController : MonoBehaviour
             // Perform fire projectile attack
             animator.SetBool("isFiring", true);
             isFiring = true;
+        }
+        else if (player.health <= 0)
+        {
+            this.enabled = false;
         }
         /*else if (Input.GetMouseButtonUp(1) && isFiring)
         {

@@ -13,17 +13,32 @@ public class UIManager : MonoBehaviour
 
     public Slider healthSlider;
 
+    // Add references to the Game Over Panel and buttons
+    public GameObject gameOverPanel;
+    public Button retryButton;
+    public Button returnToMainMenuButton;
+
+    //private TopDownPlayerController playerController;
+
     void Start()
     {
         controlsDisplay.gameObject.SetActive(false);
         enemiesDefeatedText.gameObject.SetActive(false);
         spawnManager = GetComponent<SpawnManager>();
         UpdateEnemiesDefeatedText(); // Initialize the UI Text component with the current number of enemies defeated
-        
+
+        // Initialize the Game Over Panel and button click events
+        gameOverPanel.SetActive(false);
+        retryButton.onClick.AddListener(Retry);
+        returnToMainMenuButton.onClick.AddListener(ReturnToMainMenu);
+
+        //playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<TopDownPlayerController>();
+
     }
 
     private void Update()
     {
+      
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             optionsText.gameObject.SetActive(false);
@@ -80,5 +95,31 @@ public class UIManager : MonoBehaviour
         {
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    public void ShowGameOverScreen()
+    {
+        // Pause the game
+        Time.timeScale = 0;
+
+        // Enable the Game Over Panel
+        gameOverPanel.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        // Unpause the game
+        Time.timeScale = 1;
+
+        // Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void ReturnMainMenu()
+    {
+        // Unpause the game
+        Time.timeScale = 1;
+
+        // Load the main menu scene
+        SceneManager.LoadScene("MainMenu");
     }
 }
