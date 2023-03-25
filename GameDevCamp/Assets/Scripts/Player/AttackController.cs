@@ -22,13 +22,13 @@ public class AttackController : MonoBehaviour
             isAttacking = true;
         }
 
-        if (Input.GetMouseButtonDown(1) && !isFiring && !isAttacking)
+        if (Input.GetMouseButton(1) && !isFiring && !isAttacking)
         {
             // Perform fire projectile attack
             animator.SetBool("isFiring", true);
             isFiring = true;
         }
-        else if (Input.GetMouseButtonUp(1) && isFiring)
+        else if (isFiring)
         {
             // Stop firing
             animator.SetBool("isFiring", false);

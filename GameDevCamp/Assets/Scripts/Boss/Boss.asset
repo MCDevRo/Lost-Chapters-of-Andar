@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973c05b56f1ca85428292242ea35e183, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  attackRange: 3
-  damage: 20
+  attackRange: 1.5
+  damage: 30
   chaseRange: 15
-  delayBetweenAttacks: 2
+  delayBetweenAttacks: 4
   isRanged: 0

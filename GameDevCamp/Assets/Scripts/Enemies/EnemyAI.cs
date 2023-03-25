@@ -7,8 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private Enemy enemyData;
     [SerializeField] private string playerTag = "Player";
-    //[SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private float attackDelay = 0.5f;
+    [SerializeField] private float attackDelay = 1f;
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
@@ -19,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.stoppingDistance = enemyData.AttackRange * 0.9f;
         animator = GetComponent<Animator>();
         playerTransform = GameObject.FindGameObjectWithTag(playerTag).transform;
     }
@@ -33,11 +33,16 @@ public class EnemyAI : MonoBehaviour
             {
                 StartCoroutine(Attack());
             }
+            else
+            {
+                animator.SetBool("isRunning", false);
+            }
         }
         else if (distanceToPlayer <= enemyData.ChaseRange)
         {
             navMeshAgent.SetDestination(playerTransform.position);
             animator.SetBool("isRunning", true);
+            animator.SetBool("isAttacking", false); // Set isAttacking to false
         }
         else
         {
@@ -49,17 +54,22 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator Attack()
     {
+        if (isAttacking) yield break; // Prevent multiple simultaneous instances of the coroutine
+
         isAttacking = true;
-        animator.SetTrigger("attack");
+        animator.SetBool("isAttacking", true); // Set isAttacking to true
 
         yield return new WaitForSeconds(attackDelay);
 
+        isAttacking = false;
+        animator.SetBool("isAttacking", false); // Set isAttacking to false
+    }
+    public void DealDamage()
+    {
         if (Vector3.Distance(transform.position, playerTransform.position) <= enemyData.AttackRange)
         {
             playerTransform.GetComponent<TopDownPlayerController>().TakeDamage(enemyData.Damage);
             attackCooldownTimer = enemyData.DelayBetweenAttacks;
         }
-
-        isAttacking = false;
     }
 }

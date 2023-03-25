@@ -8,6 +8,8 @@ public class SpawnManager : MonoBehaviour
     public int numberOfEnemiesToSpawn;
     public Transform[] spawnPoints;
 
+    private Collider gameManagerCollider;
+
     [SerializeField] private GameObject pillar;
     [SerializeField] private float lowerSpeed = 0.5f;
     [SerializeField] private float lowerYPosition = 5f;
@@ -16,7 +18,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        
+        gameManagerCollider = GetComponent<Collider>();
         LowerPillar();
     }
 
@@ -50,7 +52,7 @@ public class SpawnManager : MonoBehaviour
         {
             Debug.Log("Enemies started to spawn!");
             StartCoroutine(SpawnEnemies());
-
+            gameManagerCollider.enabled = !gameManagerCollider.enabled;
 
         }
     }

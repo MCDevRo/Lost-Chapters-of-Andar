@@ -16,4 +16,5 @@ public class Enemy : ScriptableObject
     public float ChaseRange { get => chaseRange; }
     public float DelayBetweenAttacks { get => delayBetweenAttacks; }
     public bool IsRanged { get => isRanged; }
+
 }

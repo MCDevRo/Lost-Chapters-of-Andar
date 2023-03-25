@@ -18,38 +18,29 @@ public class PlayerAttackController : MonoBehaviour
     {
         player = GetComponent<TopDownPlayerController>();
     }
+
     void Update()
-    { 
-        
-
-        if (Input.GetMouseButtonDown(0) && !isAttacking && !isFiring)
-        {
-            // Perform fire slash attack
-            animator.SetBool("isAttacking", true);
-            isAttacking = true;
-        }
-
-        if (Input.GetMouseButtonDown(1) && !isFiring && !isAttacking)
-        {
-            // Perform fire projectile attack
-            animator.SetBool("isFiring", true);
-            isFiring = true;
-        }
-        else if (player.health <= 0)
+    {
+        if (player.health <= 0)
         {
             this.enabled = false;
+            return;
         }
-        /*else if (Input.GetMouseButtonUp(1) && isFiring)
-        {
-            // Stop firing
-            animator.SetBool("isFiring", false);
-            isFiring = false;
-        }*/
 
         if (!isAttacking && !isFiring)
         {
-            animator.SetBool("isAttacking", false);
-            animator.SetBool("isFiring", false);
+            if (Input.GetMouseButtonDown(0))
+            {
+                // Perform fire slash attack
+                animator.SetBool("isAttacking", true);
+                isAttacking = true;
+            }
+            else if (Input.GetMouseButton(1))
+            {
+                // Perform fire projectile attack
+                animator.SetBool("isFiring", true);
+                isFiring = true;
+            }
         }
     }
 
@@ -63,12 +54,14 @@ public class PlayerAttackController : MonoBehaviour
     {
         // Transition out of fire slash attack animation
         isAttacking = false;
+        animator.SetBool("isAttacking", false);
     }
 
     void FireFinished()
     {
         // Transition out of fire projectile attack animation
         isFiring = false;
+        animator.SetBool("isFiring", false);
     }
 
     void SpawnFireball()

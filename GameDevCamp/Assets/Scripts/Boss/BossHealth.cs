@@ -24,7 +24,7 @@ public class BossHealth : MonoBehaviour
         // Instantiate the shield VFX prefab and play it at the boss's position
         if (shieldVFXPrefab != null)
         {
-            shieldVFXInstance = Instantiate(shieldVFXPrefab, transform.position, transform.rotation, transform);
+            shieldVFXInstance = Instantiate(shieldVFXPrefab, transform.position + new Vector3(0,0.4f,0), transform.rotation, transform);
         }
 
         // Set the shieldActive flag to true

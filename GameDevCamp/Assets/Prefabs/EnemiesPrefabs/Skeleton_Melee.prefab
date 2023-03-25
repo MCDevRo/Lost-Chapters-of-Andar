@@ -2505,7 +2505,7 @@ Animator:
   m_GameObject: {fileID: 1580680443544157871}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b69174d668ba02d44b14a084b217670a, type: 3}
-  m_Controller: {fileID: 9100000, guid: afef3dadeafbad146b3cb43c6cafd947, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5fe9eb901f5c7e843aff9904692a4f39, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 105f41d2a5eff7643be3806d51ff8c67, type: 2}
   playerTag: Player
-  attackDelay: 0.5
+  attackDelay: 1
 --- !u!136 &7881354429967973484
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2569,11 +2569,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 5
+  m_Acceleration: 6
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2596,6 +2596,8 @@ MonoBehaviour:
   maxHealth: 50
   vfxOffset: 1
   impactVFXPrefab: {fileID: 5167044282077615045, guid: 24b28000422b8f548a1fc451ab90e4cc, type: 3}
+  spawnManager: {fileID: 0}
+  uiManager: {fileID: 0}
 --- !u!1 &1580680443544158585
 GameObject:
   m_ObjectHideFlags: 0
