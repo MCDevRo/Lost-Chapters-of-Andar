@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossHealth : MonoBehaviour
 {
     public float maxHealth = 100f;
-    private float currentHealth;
+    public float currentHealth;
     public float fireSlashDamage = 20f;
     public GameObject impactVFXPrefab;
     public GameObject shieldVFXPrefab; // reference to the shield VFX prefab to be spawned
@@ -15,12 +15,14 @@ public class BossHealth : MonoBehaviour
     private GameObject shieldVFXInstance; // reference to the shield VFX instance
     private bool isDead = false;
     private Animator animator;
+    private ZoneTrigger zoneTrigger;
 
     void Start()
     {
         currentHealth = maxHealth;
         ActivateShield();
         animator = GetComponent<Animator>();
+        zoneTrigger = GetComponent<ZoneTrigger>();
     }
     void ActivateShield()
     {
@@ -84,6 +86,8 @@ public class BossHealth : MonoBehaviour
         Instantiate(impactVFXPrefab, new Vector3(transform.position.x, 1.6f, transform.position.z), transform.rotation);
         animator.SetTrigger("Die");
         Destroy(gameObject,2);
+        
+        
     }
 
 }
