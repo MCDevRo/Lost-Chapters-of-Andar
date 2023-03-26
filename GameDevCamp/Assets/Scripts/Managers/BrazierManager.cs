@@ -6,6 +6,7 @@ public class BrazierManager : MonoBehaviour
     private int braziersLit = 0;
     public GameObject spawnObject;
     public Transform spawnPosition;
+    public GameObject magicWall;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class BrazierManager : MonoBehaviour
         braziersLit++;
         if (braziersLit >= 3)
         {
+            magicWall.SetActive(false);
             Instantiate(spawnObject, spawnPosition.position, spawnPosition.rotation);
         }
     }

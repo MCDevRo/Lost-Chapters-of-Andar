@@ -13,11 +13,14 @@ public class BossHealth : MonoBehaviour
     public int numPillarsCharged = 0;
     private bool shieldActive = true;
     private GameObject shieldVFXInstance; // reference to the shield VFX instance
+    private bool isDead = false;
+    private Animator animator;
 
     void Start()
     {
         currentHealth = maxHealth;
         ActivateShield();
+        animator = GetComponent<Animator>();
     }
     void ActivateShield()
     {
@@ -43,6 +46,7 @@ public class BossHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            isDead = true;
             Die();
         }
         else if (impactVFXPrefab != null)
@@ -78,7 +82,8 @@ public class BossHealth : MonoBehaviour
     void Die()
     {
         Instantiate(impactVFXPrefab, new Vector3(transform.position.x, 1.6f, transform.position.z), transform.rotation);
-        Destroy(gameObject);
+        animator.SetTrigger("Die");
+        Destroy(gameObject,2);
     }
 
 }

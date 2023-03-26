@@ -2159,7 +2159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078d5eaae6c9235429da97ad287dd1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 14170ffc4514a7c4b848f6a1ebb333bc, type: 2}
+  enemyData: {fileID: 11400000, guid: f8f3c3e09fc5cb540add73d140352273, type: 2}
   playerTag: Player
   projectileSpawnPoint: {fileID: 1571813337580554646}
   projectilePrefab: {fileID: 324900969387663690, guid: c2ca073fa084c2d4499c5ea4007474f5, type: 3}
@@ -2231,6 +2231,8 @@ MonoBehaviour:
   maxHealth: 100
   vfxOffset: 1
   impactVFXPrefab: {fileID: 5167044282077615045, guid: 24b28000422b8f548a1fc451ab90e4cc, type: 3}
+  spawnManager: {fileID: 0}
+  uiManager: {fileID: 0}
 --- !u!1 &1571813338227602246
 GameObject:
   m_ObjectHideFlags: 0

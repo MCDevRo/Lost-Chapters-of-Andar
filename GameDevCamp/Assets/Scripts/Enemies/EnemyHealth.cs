@@ -12,8 +12,13 @@ public class EnemyHealth : MonoBehaviour
 
     public GameObject impactVFXPrefab;
 
+    private bool isDead = false;
+
+    private Animator animator;
+
     void Start()
     {
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
     }
 
@@ -23,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
+            isDead = true;
             Die();
         }
         else if (impactVFXPrefab != null)
@@ -36,6 +42,7 @@ public class EnemyHealth : MonoBehaviour
     {
         
         Instantiate(impactVFXPrefab, new Vector3(transform.position.x, transform.position.y + vfxOffset, transform.position.z), transform.rotation);
-        Destroy(gameObject);
+        animator.SetTrigger("Die");
+        Destroy(gameObject,2);
     }
 }

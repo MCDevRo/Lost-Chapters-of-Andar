@@ -15,6 +15,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float lowerYPosition = 5f;
 
     public UIManager uiManager; // Reference to the UIManager script
+    public GameObject magicWall;
+    public GameObject magicBlocade;
 
     void Start()
     {
@@ -42,7 +44,7 @@ public class SpawnManager : MonoBehaviour
             pillar.transform.position -= new Vector3(0f, lowerSpeed * Time.deltaTime, 0f);
             yield return null;
         }
-
+        magicBlocade.SetActive(false);
         // Disable this script so that the task is only completed once
         enabled = false;
     }
@@ -52,8 +54,17 @@ public class SpawnManager : MonoBehaviour
         {
             Debug.Log("Enemies started to spawn!");
             StartCoroutine(SpawnEnemies());
-            gameManagerCollider.enabled = !gameManagerCollider.enabled;
+            
 
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            magicWall.SetActive(true);
+            magicBlocade.SetActive(true);
+            gameManagerCollider.enabled = !gameManagerCollider.enabled;
         }
     }
 }

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1
   damage: 5
-  chaseRange: 20
+  chaseRange: 100
   delayBetweenAttacks: 1
   isRanged: 0
