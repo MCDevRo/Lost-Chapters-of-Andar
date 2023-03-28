@@ -4,7 +4,7 @@ public class IceProjectile : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float damage = 10f;
-    [SerializeField] private float lifetime = 5f;
+    [SerializeField] private float lifetime = 3f;
 
     private Vector3 direction;
 

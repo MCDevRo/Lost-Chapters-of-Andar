@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   attackRange: 1
-  damage: 5
+  damage: 10
   chaseRange: 100
   delayBetweenAttacks: 1
   isRanged: 0

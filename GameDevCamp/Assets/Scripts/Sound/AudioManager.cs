@@ -21,6 +21,11 @@ public class AudioManager : MonoBehaviour
         }
         
     }
+    private void Start()
+    {
+        Play("Ambience");
+        Play("Ambience2");
+    }
 
     public void Play(string name)
     {

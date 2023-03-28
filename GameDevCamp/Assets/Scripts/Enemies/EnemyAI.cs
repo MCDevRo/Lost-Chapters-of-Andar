@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private float attackDelay = 1f;
 
-    private NavMeshAgent navMeshAgent;
+    public NavMeshAgent navMeshAgent;
     private Animator animator;
     private Transform playerTransform;
     private bool isAttacking;

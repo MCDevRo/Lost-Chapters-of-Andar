@@ -34,12 +34,14 @@ public class PlayerAttackController : MonoBehaviour
                 // Perform fire slash attack
                 animator.SetBool("isAttacking", true);
                 isAttacking = true;
+                FindObjectOfType<AudioManager>().Play("FireSlash");
             }
             else if (Input.GetMouseButton(1))
             {
                 // Perform fire projectile attack
                 animator.SetBool("isFiring", true);
                 isFiring = true;
+                FindObjectOfType<AudioManager>().Play("FireCast");
             }
         }
     }

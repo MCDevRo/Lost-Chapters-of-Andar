@@ -178,6 +178,9 @@ public class TopDownPlayerController : MonoBehaviour
             // Disable the player mesh child object
             playerMesh.gameObject.SetActive(false);
 
+            // Play sound effect for the dodge
+            FindObjectOfType<AudioManager>().Play("Dodge");
+
             // Instantiate the firetrail VFX prefab at the player's position
             playerTrail.gameObject.SetActive(true);
 

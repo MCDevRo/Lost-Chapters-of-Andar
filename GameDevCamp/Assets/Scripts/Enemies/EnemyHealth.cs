@@ -16,10 +16,13 @@ public class EnemyHealth : MonoBehaviour
 
     private Animator animator;
 
+    private EnemyAI enemyAI;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
+        enemyAI = GetComponent<EnemyAI>();
     }
 
     public void TakeDamage(float damage)
@@ -35,6 +38,7 @@ public class EnemyHealth : MonoBehaviour
         {
             // Instantiate the impact VFX prefab and play it at the enemy's position
             Instantiate(impactVFXPrefab, new Vector3(transform.position.x,transform.position.y + vfxOffset,transform.position.z), transform.rotation);
+            FindObjectOfType<AudioManager>().Play("FireHit");
         }
     }
 
@@ -42,6 +46,10 @@ public class EnemyHealth : MonoBehaviour
     {
         
         Instantiate(impactVFXPrefab, new Vector3(transform.position.x, transform.position.y + vfxOffset, transform.position.z), transform.rotation);
+        enemyAI.navMeshAgent.enabled = false;
+        enemyAI.enabled = false;        
+        this.enabled = false;
+        FindObjectOfType<AudioManager>().Play("UndeadDie");
         animator.SetTrigger("Die");
         Destroy(gameObject,2);
     }

@@ -11,6 +11,7 @@ public class ScrollPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnScrollCollected?.Invoke();
+            FindObjectOfType<AudioManager>().Play("Pickup");
             Destroy(gameObject);
         }
     }

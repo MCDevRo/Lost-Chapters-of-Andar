@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
-    public float maxHealth = 100f;
+    public float maxHealth = 250f;
     public float currentHealth;
     public float fireSlashDamage = 20f;
     public GameObject impactVFXPrefab;
@@ -15,14 +15,16 @@ public class BossHealth : MonoBehaviour
     private GameObject shieldVFXInstance; // reference to the shield VFX instance
     private bool isDead = false;
     private Animator animator;
-    private ZoneTrigger zoneTrigger;
+    private EnemyAI enemyAI;
+    public UIManager healthBar;
 
     void Start()
     {
         currentHealth = maxHealth;
         ActivateShield();
         animator = GetComponent<Animator>();
-        zoneTrigger = GetComponent<ZoneTrigger>();
+        enemyAI = GetComponent<EnemyAI>();
+        healthBar.BossSetMaxHealth(maxHealth);
     }
     void ActivateShield()
     {
@@ -44,6 +46,7 @@ public class BossHealth : MonoBehaviour
         }
 
         currentHealth -= damage;
+        healthBar.BossSetHealth(currentHealth);
         Debug.Log("Boss has : " + currentHealth);
 
         if (currentHealth <= 0)
@@ -55,6 +58,7 @@ public class BossHealth : MonoBehaviour
         {
             // Instantiate the impact VFX prefab and play it at the boss's position
             Instantiate(impactVFXPrefab, new Vector3(transform.position.x, 1.6f, transform.position.z), transform.rotation);
+            FindObjectOfType<AudioManager>().Play("FireHit");
         }
     }
 
@@ -84,6 +88,10 @@ public class BossHealth : MonoBehaviour
     void Die()
     {
         Instantiate(impactVFXPrefab, new Vector3(transform.position.x, 1.6f, transform.position.z), transform.rotation);
+        enemyAI.navMeshAgent.enabled = false;
+        enemyAI.enabled = false;       
+        this.enabled = false;
+        FindObjectOfType<AudioManager>().Play("BossDie");
         animator.SetTrigger("Die");
         Destroy(gameObject,2);
         

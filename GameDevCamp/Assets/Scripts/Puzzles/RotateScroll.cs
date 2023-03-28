@@ -9,5 +9,6 @@ public class RotateScroll : MonoBehaviour
     {
         float rotationStep = rotationSpeed * Time.deltaTime;
         transform.Rotate(0, rotationStep, 0, Space.Self);
+        
     }
 }

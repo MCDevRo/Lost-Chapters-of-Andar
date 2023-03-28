@@ -18,6 +18,7 @@ public class Braziers : MonoBehaviour
         if (!isLit)
         {
             Instantiate(fireEffect, offSetSpawnFire.position,offSetSpawnFire.rotation);
+            FindObjectOfType<AudioManager>().Play("FireHit");
             isLit = true;
             brazierColider.enabled = !brazierColider.enabled;
         }

@@ -6,6 +6,7 @@ public class ZoneTrigger : MonoBehaviour
 {
     public GameObject magicBaricad;
     public GameObject magicBaricade;
+    public GameObject bossUi;
     public GameObject boss; // Add this line to reference the GameObject with the BossHealth component
     private BossHealth bossHealth;
 
@@ -19,6 +20,7 @@ public class ZoneTrigger : MonoBehaviour
         {
             magicBaricad.SetActive(false);
             magicBaricade.SetActive(false);
+            bossUi.SetActive(false);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -27,6 +29,7 @@ public class ZoneTrigger : MonoBehaviour
         {
             magicBaricad.SetActive(true);
             magicBaricade.SetActive(true);
+            bossUi.SetActive(true);
         }
     }
 }

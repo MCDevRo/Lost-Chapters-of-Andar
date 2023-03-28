@@ -14,11 +14,10 @@ public class FireSlash : MonoBehaviour
 
         SecondAreaEnemyHealth gardenEnemyHealth = other.GetComponent<SecondAreaEnemyHealth>();
 
-        
+
         if (gardenEnemyHealth != null)
         {
             gardenEnemyHealth.TakeDamage(damageAmount);
-            Destroy(gameObject);
         }
 
         if (enemyHealth != null)
@@ -30,10 +29,13 @@ public class FireSlash : MonoBehaviour
         if (bossHealth != null)
         {
             bossHealth.TakeDamage(damageAmount);
+
         }
         else if (bossHealth != null)
         {
             bossHealth.PillarCharged();
+
+
         }
     }
 }

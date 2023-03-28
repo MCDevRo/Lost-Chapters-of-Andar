@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ghost
   m_EditorClassIdentifier: 
   attackRange: 1
-  damage: 10
+  damage: 15
   chaseRange: 5
   delayBetweenAttacks: 1
   isRanged: 0

@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     private int enemiesDefeated = 0; // Counter for the number of enemies defeated
 
     public Slider healthSlider;
+    public Slider bossHealthSlider;
 
     // Add references to the Game Over Panel and buttons
     public GameObject gameOverPanel;
@@ -83,10 +84,21 @@ public class UIManager : MonoBehaviour
     {
         healthSlider.maxValue = health;
         healthSlider.value = health;
+        
     }
     public void SetHealth(float health)
     {
         healthSlider.value = health;
+        
+    }
+    public void BossSetMaxHealth(float health)
+    {
+        bossHealthSlider.maxValue = health;
+        bossHealthSlider.value = health;
+    }
+    public void BossSetHealth(float health)
+    {
+        bossHealthSlider.value = health;
     }
 
     private void ReturnToMainMenu()

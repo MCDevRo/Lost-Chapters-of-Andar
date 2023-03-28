@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973c05b56f1ca85428292242ea35e183, type: 3}
   m_Name: Undead
   m_EditorClassIdentifier: 
-  attackRange: 10
-  damage: 10
+  attackRange: 5
+  damage: 15
   chaseRange: 15
   delayBetweenAttacks: 1
   isRanged: 1
