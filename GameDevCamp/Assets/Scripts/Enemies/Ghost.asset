@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973c05b56f1ca85428292242ea35e183, type: 3}
   m_Name: Ghost
   m_EditorClassIdentifier: 
-  attackRange: 1
+  attackRange: 1.5
   damage: 15
   chaseRange: 5
   delayBetweenAttacks: 1

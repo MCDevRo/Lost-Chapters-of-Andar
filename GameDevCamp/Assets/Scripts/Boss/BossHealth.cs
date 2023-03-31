@@ -59,6 +59,7 @@ public class BossHealth : MonoBehaviour
             // Instantiate the impact VFX prefab and play it at the boss's position
             Instantiate(impactVFXPrefab, new Vector3(transform.position.x, 1.6f, transform.position.z), transform.rotation);
             FindObjectOfType<AudioManager>().Play("FireHit");
+            FindObjectOfType<AudioManager>().Play("BossHit");
         }
     }
 
@@ -91,6 +92,7 @@ public class BossHealth : MonoBehaviour
         enemyAI.navMeshAgent.enabled = false;
         enemyAI.enabled = false;       
         this.enabled = false;
+        FindObjectOfType<AudioManager>().Play("FireHit");
         FindObjectOfType<AudioManager>().Play("BossDie");
         animator.SetTrigger("Die");
         Destroy(gameObject,2);

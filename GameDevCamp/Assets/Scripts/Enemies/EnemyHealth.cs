@@ -39,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
             // Instantiate the impact VFX prefab and play it at the enemy's position
             Instantiate(impactVFXPrefab, new Vector3(transform.position.x,transform.position.y + vfxOffset,transform.position.z), transform.rotation);
             FindObjectOfType<AudioManager>().Play("FireHit");
+            FindObjectOfType<AudioManager>().Play("EnemyHit");
         }
     }
 
@@ -49,8 +50,9 @@ public class EnemyHealth : MonoBehaviour
         enemyAI.navMeshAgent.enabled = false;
         enemyAI.enabled = false;        
         this.enabled = false;
+        FindObjectOfType<AudioManager>().Play("FireHit");
         FindObjectOfType<AudioManager>().Play("UndeadDie");
         animator.SetTrigger("Die");
-        Destroy(gameObject,2);
+        Destroy(gameObject,2f);
     }
 }

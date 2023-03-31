@@ -9,6 +9,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private float attackDelay = 1f;
 
+    public GameObject hitFX;
+    private float vfxOffset = 1f;
+
     public NavMeshAgent navMeshAgent;
     private Animator animator;
     private Transform playerTransform;
@@ -41,6 +44,7 @@ public class EnemyAI : MonoBehaviour
         else if (distanceToPlayer <= enemyData.ChaseRange)
         {
             navMeshAgent.SetDestination(playerTransform.position);
+            
             animator.SetBool("isRunning", true);
             animator.SetBool("isAttacking", false); // Set isAttacking to false
         }
@@ -69,7 +73,10 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(transform.position, playerTransform.position) <= enemyData.AttackRange)
         {
             playerTransform.GetComponent<TopDownPlayerController>().TakeDamage(enemyData.Damage);
+            Instantiate(hitFX, new Vector3(playerTransform.position.x, playerTransform.position.y + vfxOffset, playerTransform.position.z), Quaternion.identity);
+            FindObjectOfType<AudioManager>().Play("FireHitOmni");
             attackCooldownTimer = enemyData.DelayBetweenAttacks;
+            
         }
     }
 }

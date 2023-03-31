@@ -20,7 +20,7 @@ public class PillarController : MonoBehaviour
         numShots++;
 
         // check if the pillar is charged
-        if (!charged && numShots >= 2)
+        if (!charged && numShots >= 1)
         {
             charged = true;
 

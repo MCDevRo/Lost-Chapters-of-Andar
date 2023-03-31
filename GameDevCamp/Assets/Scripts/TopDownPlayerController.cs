@@ -26,9 +26,9 @@ public class TopDownPlayerController : MonoBehaviour
 
     // Dodge variables
     [SerializeField]
-    private float dodgeDuration = 0.5f;
+    private float dodgeDuration = 0.9f;
     [SerializeField]
-    private float dodgeCooldown = 1f;
+    private float dodgeCooldown = 1.5f;
     [SerializeField]
     private float dodgeRange = 5f;
     [SerializeField]
@@ -37,9 +37,11 @@ public class TopDownPlayerController : MonoBehaviour
     private bool isDead = false;
 
 
+
     // Player mesh transform
     private Transform playerMesh;
     private Transform playerTrail;
+    
 
     [SerializeField]
     private LayerMask dodgeRaycastLayerMask;
@@ -76,7 +78,7 @@ public class TopDownPlayerController : MonoBehaviour
         }
         // Get the joystick's horizontal and vertical axes
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float vertical = -Input.GetAxis("Vertical");
 
         // Get the horizontal and vertical axes from the keyboard
         if (Input.GetAxis("Horizontal") != 0)
@@ -138,7 +140,7 @@ public class TopDownPlayerController : MonoBehaviour
     {
         // Decrement the player's health by the specified amount
         health -= amount;
-
+        FindObjectOfType<AudioManager>().Play("PlayerHit");
         healthBar.SetHealth(health);
 
         Debug.Log(health);
@@ -156,6 +158,7 @@ public class TopDownPlayerController : MonoBehaviour
         animator.SetTrigger("Die");
         Debug.Log("Player is Dead!");
         this.enabled = false;
+        FindObjectOfType<AudioManager>().Play("PlayerDie");
 
         StartCoroutine(ShowGameOverScreenAfterDeathAnimation());
 

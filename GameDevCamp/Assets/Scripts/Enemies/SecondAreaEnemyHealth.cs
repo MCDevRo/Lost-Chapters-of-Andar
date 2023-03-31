@@ -52,6 +52,7 @@ public class SecondAreaEnemyHealth : MonoBehaviour
             // Instantiate the impact VFX prefab and play it at the enemy's position
             Instantiate(impactVFXPrefab, new Vector3(transform.position.x, transform.position.y + vfxOffset, transform.position.z), transform.rotation);
             FindObjectOfType<AudioManager>().Play("FireHit");
+            FindObjectOfType<AudioManager>().Play("EnemyHit");
         }
     }
 
@@ -62,7 +63,7 @@ public class SecondAreaEnemyHealth : MonoBehaviour
                 
         
         this.enabled = false;
-
+        FindObjectOfType<AudioManager>().Play("FireHit");
         FindObjectOfType<AudioManager>().Play("SkeletonDie");
         animator.SetTrigger("Die");
         Destroy(gameObject,3);

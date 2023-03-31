@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
     {
         Play("Ambience");
         Play("Ambience2");
+        Play("StageMusic");
     }
 
     public void Play(string name)

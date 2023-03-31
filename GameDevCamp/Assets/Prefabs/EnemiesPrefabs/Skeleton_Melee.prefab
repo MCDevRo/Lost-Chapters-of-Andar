@@ -2545,6 +2545,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 105f41d2a5eff7643be3806d51ff8c67, type: 2}
   playerTag: Player
   attackDelay: 1
+  hitFX: {fileID: 660604078598729712, guid: a0deec4ddb1966147a11772c5df7cda6, type: 3}
   navMeshAgent: {fileID: 6546082388189050835}
 --- !u!136 &7881354429967973484
 CapsuleCollider:

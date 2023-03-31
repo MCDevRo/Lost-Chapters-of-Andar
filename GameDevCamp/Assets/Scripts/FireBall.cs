@@ -6,6 +6,7 @@ public class FireBall : MonoBehaviour
 {
     public float damageAmount = 50f;
     public float fireballPushForce = 10f;
+    public GameObject impactVFXPrefab;
 
     void OnTriggerEnter(Collider other)
     {
@@ -35,6 +36,7 @@ public class FireBall : MonoBehaviour
                 brazier.LightBrazier();
                 BrazierManager.Instance.IncrementBraziersLit();
             }
+            Destroy(gameObject);
         }
         if (enemyHealth != null)
         {
@@ -52,6 +54,18 @@ public class FireBall : MonoBehaviour
             bossHealth.PillarCharged();
             Destroy(gameObject);
         }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
+        if(other.gameObject != null)
+        {
+            FindObjectOfType<AudioManager>().Play("FireHit");
+            Instantiate(impactVFXPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        
     }
 }
 

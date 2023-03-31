@@ -68,6 +68,7 @@ public class EnemyAIRanged : MonoBehaviour
         // Create a new projectile at the spawn point and set its direction
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
         projectile.GetComponent<IceProjectile>().SetDirection(directionToCenter);
+        FindObjectOfType<AudioManager>().Play("IceSpell");
 
         attackCooldownTimer = attackCooldown;
         isAttacking = false;

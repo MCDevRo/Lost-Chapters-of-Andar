@@ -30,6 +30,7 @@ public class ZoneTrigger : MonoBehaviour
             magicBaricad.SetActive(true);
             magicBaricade.SetActive(true);
             bossUi.SetActive(true);
+            FindObjectOfType<AudioManager>().Play("BossIntro");
         }
     }
 }
