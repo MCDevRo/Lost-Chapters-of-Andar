@@ -47,12 +47,13 @@ public class EnemyHealth : MonoBehaviour
     {
         
         Instantiate(impactVFXPrefab, new Vector3(transform.position.x, transform.position.y + vfxOffset, transform.position.z), transform.rotation);
-        enemyAI.navMeshAgent.enabled = false;
-        enemyAI.enabled = false;        
-        this.enabled = false;
+        //enemyAI.navMeshAgent.enabled = false;
+        //enemyAI.enabled = false;        
+        
         FindObjectOfType<AudioManager>().Play("FireHit");
         FindObjectOfType<AudioManager>().Play("UndeadDie");
         animator.SetTrigger("Die");
+        this.enabled = false;
         Destroy(gameObject,2f);
     }
 }
