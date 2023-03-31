@@ -67,6 +67,7 @@ MonoBehaviour:
   speed: 10
   damage: 10
   lifetime: 5
+  hitFX: {fileID: 660604078598729712, guid: a0deec4ddb1966147a11772c5df7cda6, type: 3}
 --- !u!54 &6740343284922096102
 Rigidbody:
   m_ObjectHideFlags: 0

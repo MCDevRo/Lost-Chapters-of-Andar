@@ -29,13 +29,17 @@ public class FireSlash : MonoBehaviour
         if (bossHealth != null)
         {
             bossHealth.TakeDamage(damageAmount);
-
+            //Destroy(gameObject);
         }
         else if (bossHealth != null)
         {
             bossHealth.PillarCharged();
+            //Destroy(gameObject);
+        }
 
-
+        if (other.gameObject.CompareTag("Player"))
+        {
+            return;
         }
     }
 }

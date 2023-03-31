@@ -15,5 +15,5 @@ MonoBehaviour:
   attackRange: 2
   damage: 30
   chaseRange: 15
-  delayBetweenAttacks: 2
+  delayBetweenAttacks: 1
   isRanged: 0

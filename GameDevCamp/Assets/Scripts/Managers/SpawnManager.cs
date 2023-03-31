@@ -17,11 +17,13 @@ public class SpawnManager : MonoBehaviour
     public UIManager uiManager; // Reference to the UIManager script
     public GameObject magicWall;
     public GameObject magicBlocade;
+   
 
     void Start()
     {
         gameManagerCollider = GetComponent<Collider>();
         LowerPillar();
+        FindObjectOfType<AudioManager>().Play("FireHit");
     }
 
     IEnumerator SpawnEnemies()
@@ -38,6 +40,7 @@ public class SpawnManager : MonoBehaviour
     }
     public IEnumerator LowerPillar()
     {
+        
         // Lower the pillar gradually
         while (pillar.transform.position.y > lowerYPosition)
         {
@@ -45,6 +48,7 @@ public class SpawnManager : MonoBehaviour
             yield return null;
         }
         magicBlocade.SetActive(false);
+       
         // Disable this script so that the task is only completed once
         enabled = false;
     }

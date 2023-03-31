@@ -6,6 +6,8 @@ public class IceProjectile : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private float lifetime = 3f;
 
+    public GameObject hitFX;
+
     private Vector3 direction;
 
     private void Update()
@@ -32,8 +34,15 @@ public class IceProjectile : MonoBehaviour
             if (playerController != null)
             {
                 playerController.TakeDamage(damage);
+                FindObjectOfType<AudioManager>().Play("IceHit");
             }
 
+            Destroy(gameObject);
+        }
+        if (other.gameObject != null)
+        {
+            FindObjectOfType<AudioManager>().Play("IceHit");
+            Instantiate(hitFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
