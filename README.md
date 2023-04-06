@@ -1,4 +1,4 @@
-# GameDevCamp
+# Lost Chapters of Andar
 Team 2 : DontPanicGames 
 Game Name: Lost Chapters of Andar
 Genre: Action-puzzle game
