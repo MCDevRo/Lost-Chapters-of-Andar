@@ -13,6 +13,7 @@ TagManager:
   - Brazier
   - SpawnManager
   - spawn
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - dodgeRaycastLayerMask
   - WallsAndStairs
   - Ground
-  - 
-  - 
+  - Enemies
+  - EnemiesProjectile
   - 
   - 
   - 

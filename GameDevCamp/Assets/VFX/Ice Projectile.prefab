@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5163882907995710263}
   - component: {fileID: 7542920068382458351}
   - component: {fileID: 6740343284922096102}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ice Projectile
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,8 +50,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0.3}
 --- !u!114 &7542920068382458351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1227318172292961107}
   - component: {fileID: 8292386167211562862}
   - component: {fileID: 1223918382837118693}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: IceFlares
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5047,7 +5047,7 @@ GameObject:
   - component: {fileID: 8696477209639956518}
   - component: {fileID: 5342007050267436146}
   - component: {fileID: 3734743643161550895}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5142,7 +5142,7 @@ GameObject:
   - component: {fileID: 4971483950231205158}
   - component: {fileID: 5389069727616271598}
   - component: {fileID: 2910769953844672476}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SnowFlakes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9958,7 +9958,7 @@ GameObject:
   - component: {fileID: 6935168752925349567}
   - component: {fileID: 6935168752925349537}
   - component: {fileID: 6935168752925349536}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrailBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10110,7 +10110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7369374073289289127}
   - component: {fileID: 7369374073289289124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FadeLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10204,7 +10204,7 @@ GameObject:
   - component: {fileID: 7550753407208207940}
   - component: {fileID: 7550753407208207939}
   - component: {fileID: 6935168753096851613}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
